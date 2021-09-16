@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  version="4.0"
+  metadata-complete="false">
+
+  <display-name>Welcome to Tomcat</display-name>
+  <description>
+     Welcome to Tomcat
+  </description>
+  
+  <servlet>
+  	<servlet-name>app023</servlet-name>
+  	<servlet-class>controllers.UpdatePatientRecordServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+  	<servlet-name>app023</servlet-name>
+  	<url-pattern>/update_patient_record.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app022</servlet-name>
+  	<servlet-class>controllers.CollectPatientRecordsServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+  	<servlet-name>app022</servlet-name>
+  	<url-pattern>/collectPatientRecords.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>app021</servlet-name>
+  	<servlet-class>controllers.PatientProfilesServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app021</servlet-name>
+  	<url-pattern>/patient_profiles.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app020</servlet-name>
+  	<servlet-class>controllers.CheckPatientEmailServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app020</servlet-name>
+  	<url-pattern>/checkPatientEmail.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app019</servlet-name>
+  	<servlet-class>controllers.BedsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app019</servlet-name>
+  	<url-pattern>/beds.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>app018</servlet-name>
+  	<servlet-class>controllers.AssignRoomBedServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app018</servlet-name>
+  	<url-pattern>/assign_room_bed.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app017</servlet-name>
+  	<servlet-class>controllers.NewAdmissionServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app017</servlet-name>
+  	<url-pattern>/new_admission.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>app016</servlet-name>
+  	<servlet-class>controllers.HospitalFacilityServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app016</servlet-name>
+  	<url-pattern>/hospital_facilities.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>app015</servlet-name>
+  	<servlet-class>controllers.SendOtpServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app015</servlet-name>
+  	<url-pattern>/send_otp.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app014</servlet-name>
+  	<servlet-class>controllers.ShowHospitalPicsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app014</servlet-name>
+  	<url-pattern>/showHospitalPics.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app013</servlet-name>
+  	<servlet-class>controllers.HospitalPicsUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>app013</servlet-name>
+  	<url-pattern>/hospital_pics_upload.do</url-pattern>
+  </servlet-mapping>
+   
+  <servlet>
+  	<servlet-name>app001</servlet-name>
+  	<servlet-class>controllers.HospitalRegisterServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app001</servlet-name>
+  	<url-pattern>/hospital_register.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app002</servlet-name>
+  	<servlet-class>controllers.HospitalLoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app002</servlet-name>
+  	<url-pattern>/hospital_login.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>app003</servlet-name>
+  	<servlet-class>controllers.DoctorRegisterServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app003</servlet-name>
+  	<url-pattern>/doctor_register.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>app004</servlet-name>
+  	<servlet-class>controllers.PatientRegisterServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app004</servlet-name>
+  	<url-pattern>/patient_register.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app005</servlet-name>
+  	<servlet-class>controllers.ActivationServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app005</servlet-name>
+  	<url-pattern>/activation.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app006</servlet-name>
+  	<servlet-class>controllers.CheckHospitalEmailServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app006</servlet-name>
+  	<url-pattern>/checkHospitalEmail.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app007</servlet-name>
+  	<servlet-class>controllers.HospitalProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app007</servlet-name>
+  	<url-pattern>/hospital_profile.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app008</servlet-name>
+  	<servlet-class>controllers.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app008</servlet-name>
+  	<url-pattern>/logout.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>app009</servlet-name>
+  	<servlet-class>controllers.HospitalLogoUploadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app009</servlet-name>
+  	<url-pattern>/hospital_logo_upload.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app010</servlet-name>
+  	<servlet-class>controllers.ShowHospitalLogoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app010</servlet-name>
+  	<url-pattern>/show_hospital_logo.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>app011</servlet-name>
+  	<servlet-class>controllers.HospitalDashboardServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app011</servlet-name>
+  	<url-pattern>/hospital_dashboard.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>app012</servlet-name>
+  	<servlet-class>controllers.HospitalPicsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>app012</servlet-name>
+  	<url-pattern>/hospital_pics.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+   
+
+</web-app>

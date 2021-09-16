@@ -1,0 +1,28 @@
+  .banner{
+      background:url(../images/banner.jpg) 0px -400px;
+      background-size: cover;
+      height: 600px;
+      margin-bottom:0px;
+    
+  }
+  
+ .red{
+ 	border: 1px solid red;
+ 	
+ }
+ .blue{
+ 	border:1px solid blue;
+ }
+ 
+ .form-inp{
+ 	border: 0px;
+ }
+ 
+ .footer{
+ 	 
+ 	 
+ 	color:black;
+ 	 
+ 	margin-bottom:0px;
+ 	
+ }
