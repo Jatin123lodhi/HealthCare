@@ -23,15 +23,15 @@
     </div>
 
     <div class="main_body">
-        <h3 class="text-info text-center pt-3">Login -</h3>
+        <h3 class="text-info text-center pt-3">Hospital Login -</h3>
 
-        <div class="container border-top border-info " style="min-height: 500px;">
+        <div class="container  " style="min-height: 500px;">
             <div class="row pt-4 ">
-                <div class="col-6 pt-5 text-center"  >
+                <div class="col-6   text-center"  >
                      
-                    <img src="static/images/login1.png" alt="" style="width: 35%;" class=" pt-3 ">
+                    <img src="static/images/login2.jpg"  alt="" style="width: 100%;"  >
                 </div>
-                <div class="col-6 pt-5 pl-5 border-left border-info">
+                <div class="col-6 pt-5 pl-5  ">
                      <% String  errorMsg = (String)request.getAttribute("error"); %>
                     <% if(errorMsg!= null){  %>
                     	<h6 class="border border-danger pt-3"><%= errorMsg %></h6>

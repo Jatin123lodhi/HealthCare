@@ -16,7 +16,7 @@ import models.City;
 public class Doctor {
 	private Integer doctorId;
 	private String name;
-	private String specialization;
+	private Specialization specialization;
 	private String address;
 	private String contactNo;
 	private String email;
@@ -28,6 +28,7 @@ public class Doctor {
 	private City city;
 	private String gender;
 	private ServiceTime serviceTime;
+	private String logo;
 	
 	
 	
@@ -61,7 +62,7 @@ public class Doctor {
 		this.activationCode = activationCode;
 	}
 	
-	public Doctor(int doctorId,String name,String email,String specialization,String address,String contactNo,String experience,City city,String gender,ServiceTime serviceTime) {
+	public Doctor(int doctorId,String name,String email,Specialization specialization,String address,String contactNo,String experience,City city,String gender,ServiceTime serviceTime) {
 		this.doctorId = doctorId;
 		this.name = name;
 		this.email = email;
@@ -74,13 +75,68 @@ public class Doctor {
 		this.serviceTime = serviceTime;
 	}
 	
-	public Doctor(String name,String specialization,String experience,ServiceTime serviceTime){
+	public Doctor(String name,String experience,ServiceTime serviceTime,String logo){
 		this.name = name;
-		this.specialization = specialization;
 		this.experience = experience;
 		this.serviceTime = serviceTime;
+		this.logo = logo;
 	}
 	//############### methods #######################################
+	public void saveLogo(String fileName) {
+		Connection con= null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
+			
+			String query = "update doctors set logo=? where email=?";
+			PreparedStatement pst = con.prepareStatement(query);
+			
+			pst.setString(1,fileName);
+			pst.setString(2, email);
+			
+			pst.executeUpdate();
+			
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
+	public static ArrayList<City> getDoctorCities() {
+		Connection con= null;
+		ArrayList<City> cities = new ArrayList<City>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
+			
+			String query = "select distinct city,d.city_id from doctors as d inner join cities as c where c.city_id=d.city_id";
+			PreparedStatement pst = con.prepareStatement(query);
+		 
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				cities.add(new City(rs.getString(1)));
+			}
+			
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cities;
+	}
+	
 	public void setAppliedHospital(int hospitalId){
 		Connection con  = null;
 		 
@@ -116,14 +172,14 @@ public class Doctor {
 			Class.forName("com.mysql.cj.jdbc.Driver"); // classnot found except
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234"); //sql excep
 			
-			String query = "select name,email,specialization,address,contact_no,experience,city_id,gender,service_time from doctors as d inner join service_times as st where doctor_id=? and d.service_time_id=st.service_time_id";
+			String query = "select name,email,specialization_id,address,contact_no,experience,city_id,gender,service_time from doctors as d inner join service_times as st where doctor_id=? and d.service_time_id=st.service_time_id";
 			
 			PreparedStatement pst = con.prepareStatement(query); // sql exep
 			pst.setInt(1, doctorId);
 			
 			ResultSet rs = pst.executeQuery(); // sql excep
 			while(rs.next()) { // sql excep
-				  doctor = new Doctor(doctorId,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),new City(rs.getInt(7)),rs.getString(8),new ServiceTime(rs.getString(9)));
+				  doctor = new Doctor(doctorId,rs.getString(1),rs.getString(2),new Specialization(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),new City(rs.getInt(7)),rs.getString(8),new ServiceTime(rs.getString(9)));
 			}
 			
 		}catch(SQLException | ClassNotFoundException e) {
@@ -139,24 +195,22 @@ public class Doctor {
 	}
 	
 	
-	public static ArrayList<Doctor> getDoctorRecords(int hospitalId,String speciality,int timeId) {
+	public static ArrayList<Doctor> getDoctorRecords(int cityId,int specialityId) {
 		Connection con= null;
 		ArrayList<Doctor> doctors = new ArrayList<Doctor>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
 			
-			String query = "select name,specialization,experience,service_time_id from doctors where hospital_id=? and specialization=? and service_time_id=?";
+			String query = "select name,experience,d.service_time_id,service_time,logo from doctors as d inner join service_times as st where d.service_time_id=st.service_time_id and city_id=? and specialization_id=?";
 			PreparedStatement pst = con.prepareStatement(query);
 			
-			pst.setInt(1,hospitalId);
-			pst.setString(2,speciality);
-			pst.setInt(3,timeId);
-			
+			pst.setInt(1,cityId);
+			pst.setInt(2,specialityId);	
 		 
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				doctors.add(new Doctor(rs.getString(1),rs.getString(2),rs.getString(3),new ServiceTime(rs.getInt(4))));
+				doctors.add(new Doctor(rs.getString(1),rs.getString(2),new ServiceTime(rs.getInt(3),rs.getString(4)),rs.getString(5)));
 			}
 			
 		}catch(SQLException | ClassNotFoundException e) {
@@ -199,7 +253,7 @@ public class Doctor {
 	}
 	
 	public boolean updateProfile(String name, int serviceTimeId, String contact, String gender, int cityId,
-		String specialization, String experience, String address) {
+		Specialization specialization, String experience, String address) {
 		Connection con = null;
 		boolean updated = false;
 		try {
@@ -207,7 +261,7 @@ public class Doctor {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
 			
-			String  query = "update doctors set name=?,service_time_id=?,contact_no=?,gender=?,city_id=?,specialization=?,experience=?,address=?"
+			String  query = "update doctors set name=?,service_time_id=?,contact_no=?,gender=?,city_id=?,specialization_id=?,experience=?,address=?"
 					+ " where doctor_id=?";
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1,name);
@@ -215,7 +269,7 @@ public class Doctor {
 			pst.setString(3,contact);
 			pst.setString(4,gender);
 			pst.setInt(5,cityId);
-			pst.setString(6, specialization);
+			pst.setInt(6, specialization.getSpecializationId());
 			pst.setString(7, experience);
 			pst.setString(8, address);
 			pst.setInt(9, doctorId);
@@ -251,8 +305,8 @@ public class Doctor {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");  //java.sql.DriverManager
 			
-			String query = "select doctor_id,name,contact_no,address,password,status_id,d.city_id,city,specialization,experience,"
-					+ "profile_pic,gender,service_time_id FROM doctors AS d INNER JOIN cities AS c where email=? AND d.city_id=c.city_id";
+			String query = "select doctor_id,name,contact_no,address,password,status_id,d.city_id,city,specialization_id,experience,"
+					+ "profile_pic,gender,service_time_id,logo FROM doctors AS d INNER JOIN cities AS c where email=? AND d.city_id=c.city_id";
 			PreparedStatement pst = con.prepareStatement(query);
 			
 			pst.setString(1,email);
@@ -272,11 +326,12 @@ public class Doctor {
 					address = rs.getString(4);
 					status = new Status(rs.getInt(6));
 					city = new City(rs.getInt(7),rs.getString(8));
-					specialization = rs.getString(9);
+					specialization = new Specialization(rs.getInt(9));
 					experience = rs.getString(10);
 					profilePic = rs.getString(11);
 					gender = rs.getString(12);
 					serviceTime = new ServiceTime(rs.getInt(13));
+					logo = rs.getString(14);
 					resp = "ok";
 				
 				}else {
@@ -367,10 +422,10 @@ public class Doctor {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSpecialization() {
+	public Specialization getSpecialization() {
 		return specialization;
 	}
-	public void setSpecialization(String specialization) {
+	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
 	}
 	public String getAddress() {
@@ -443,12 +498,13 @@ public class Doctor {
 		this.serviceTime = serviceTime;
 	}
 
-	 
+	public String getLogo() {
+		return logo;
+	}
 
-	
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 
-	
-	
-	
 	
 }

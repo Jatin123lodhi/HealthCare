@@ -61,8 +61,10 @@ public class PatientLoginServlet extends HttpServlet{
 						nextPage = "patient_dashboard.do";  
 						 
 						
-					}else if(statusId==Status.INACTIVE) {
+					}else if(statusId==Status.INACTIVE) { // status id  = 2 
 						// account inactive show karege 
+						error += "<li>Activate your account</li>";
+						nextPage = "patient_login.do";
 						
 					}else if(statusId==Status.BLOCKED) {
 						// same page par accound blocked show karenge

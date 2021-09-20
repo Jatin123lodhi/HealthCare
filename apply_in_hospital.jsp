@@ -58,7 +58,7 @@
      				</div>
      			 		
      			 	<div class="form-group">
-	     			 	<% ArrayList<Hospital> hospitals = Hospital.getHospitalNames(doctor.getCity().getCityId());  %>
+	     			 	<% ArrayList<Hospital> hospitals = Hospital.getHospitalNames();  %>
 	     			 	<label class="text-info font-weight-bold">Select Hospital: </label>
 	     			 	<select class="form-control btn btn-outline-info font-weight-bold" id="id_hospital" name="hospital">
 	     						<option value='0'>Select Hospital</option>

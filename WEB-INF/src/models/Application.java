@@ -143,13 +143,13 @@ public class Application {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
 			
-			String query = "select doctor_license_file,a.doctor_id,name,email,specialization,address,contact_no,experience,city_id,gender,service_time_id,application_id,a.hospital_id from applications as a inner join doctors as d where application_status_id=1 and a.doctor_id=d.doctor_id and a.hospital_id=?";
+			String query = "select doctor_license_file,a.doctor_id,name,email,specialization_id,address,contact_no,experience,city_id,gender,service_time_id,application_id,a.hospital_id from applications as a inner join doctors as d where application_status_id=1 and a.doctor_id=d.doctor_id and a.hospital_id=?";
 			PreparedStatement pst = con.prepareStatement(query);
 			
 			pst.setInt(1, hospitalId);
 			ResultSet rs  = pst.executeQuery();
 			while(rs.next()) {
-				list.add(new Application(rs.getString(1),new Doctor(rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),new City(rs.getInt(9)),rs.getString(10),new ServiceTime(rs.getInt(11))),rs.getInt(12),new Hospital(rs.getInt(13))));
+				list.add(new Application(rs.getString(1),new Doctor(rs.getInt(2),rs.getString(3),rs.getString(4),new Specialization(rs.getInt(5)),rs.getString(6),rs.getString(7),rs.getString(8),new City(rs.getInt(9)),rs.getString(10),new ServiceTime(rs.getInt(11))),rs.getInt(12),new Hospital(rs.getInt(13))));
 			}
 			
 		}catch(SQLException|ClassNotFoundException e) {

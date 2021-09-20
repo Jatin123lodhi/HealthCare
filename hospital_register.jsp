@@ -30,7 +30,7 @@
             <div class="row pt-4 ">
                 <div class="col-6 pt-5 text-center"  >
                      
-                    <img src="static/images/hospitallogo.png" alt="" style="width: 50%;" class=" pt-5 ">
+                    <img src="static/images/hospitalRegister.jpg" alt="" style="width: 100%;" class=" pt-5 mr-5 ml-n4">
                 </div>
                 <div class="col-6 pt-5 pl-5 ">
                    <h3 class="text-info border-bottom border-info text-center pt-3 pb-3">Register as Hospital-</h3>

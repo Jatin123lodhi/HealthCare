@@ -28,6 +28,22 @@ INSERT INTO states (state) VALUES ('Not Selected');
 ## #########################################################################################
 ## #########################################################################################
 
+create table specializations(
+	specialization_id int auto_increment primary key,
+	specialization varchar(50) not null
+);
+
+#alter table specializations modify specialization_id int auto_increment;   -- if we forget auto_increment likhna
+---------------------- inserting recors --------------------------------
+insert into specializations
+(specialization)
+values
+('Dentist'),('Dermatologist'),('Orthopedic'),('Cardiologist'),('Phychiarist'),('Ophthalmologist'),('General Physician'),('Veterinarian'),('Neurologist'),('Paediatrician'),('Gynecologist'),('Ayurvedic');
+
+
+
+## #########################################################################################
+## #########################################################################################
 create table service_times(	
 	service_time_id int auto_increment primary key,
 	service_time varchar(30) not null
@@ -235,7 +251,7 @@ create  table doctors(
     name varchar(40) not null,
     email varchar(60) not null,
     password varchar(100) not null,
-    specialization varchar(60)  null,
+    specialization int  null,
     address varchar(400)  null,
     contact_no varchar(10)  null,
     experience varchar(20)  null,
@@ -245,12 +261,13 @@ create  table doctors(
     city_id int null,
     constraint fk_doctors_status foreign key (status_id) references status (status_id),
     constraint fk_doctors_cities foreign key (city_id) references cities (city_id)  
-    
+    constraint fk_doctors_specializations foreign key (specialization_id) references specializations (specialization_id);
     
     #constraint fk_doctors_cities foreign key (doctor_id) references cities (city_id)  
 
 );
-
+##  alter table doctors modify specialization int null;  -- when specialization as a string tha
+##  alter table doctors add constraint fk_doctors_specializations foreign key (specialization_id) references specializations (specialization_id);
 ## ~~~~~~~~~~~~~~~~~~~~ Query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alter table doctors change column city_id city_id int default 7;
 #update doctors set city_id=7;
@@ -261,7 +278,7 @@ alter table doctors add column service_time_id int;
 #select specialization from doctors;
 alter table doctors add column hospital_id int;
 alter table doctors add constraint fk_doctors_hospitals foreign key (hospital_id) references hospitals (hospital_id);
-
+alter table doctors add column logo varchar(100) null;
 ## #########################################################################################
 ## #########################################################################################
 

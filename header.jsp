@@ -14,7 +14,7 @@
                     	
                     </div>
                     <div class="col-8   pt-3 pb-1">
-                       <a href="index.jsp" style="text-decoration:none"> <h2 class="text-success py-1 font-weight-bold">Health Care</h2></a>
+                        <a href="index.jsp" style="text-decoration:none"> <h2 class="text-success py-1 font-weight-bold">Health Care</h2></a>
                         <p class="text-primary text-info">We take care of your health.</p>
                         
                     </div>
@@ -48,13 +48,18 @@
                         		<% if(hospital==null && patient==null && doctor==null ){ %>
 	                        		<a href="login_opt.jsp" class="dropdown-item text-info "><i class="fa fa-sign-in  "></i> Login</a>
 	                        		<a href="register_opt.jsp" class="dropdown-item text-info "><i class="fa fa-user-plus  "></i> Register</a>
-	                     	   	<%}else{ %>
+	                     	   	<%}else if(hospital!=null){ %>
 	                     	   		
 	                     	   		<a href="logout.do" class="dropdown-item text-info"><i class="fa fa-sign-out  "></i> Logout</a> 
 	                     	   		<a href="hospital_profile.do" class="dropdown-item text-info "><i class="fa fa-user  "></i> Profile</a> 
-	                     	   	<%} %>
-		                                         
-		                        
+	                     	   	<%}else if(doctor!=null){ %>
+                     	   		
+	                     	   		<a href="logout.do" class="dropdown-item text-info"><i class="fa fa-sign-out  "></i> Logout</a> 
+	                     	   		<a href="doctor_profile.do" class="dropdown-item text-info "><i class="fa fa-user  "></i> Profile</a>  
+		                        <%}else if(patient!=null){ %>
+		                        	<a href="logout.do" class="dropdown-item text-info"><i class="fa fa-sign-out  "></i> Logout</a> 
+	                     	   		<a href="doctor_profile.do" class="dropdown-item text-info "><i class="fa fa-user  "></i> Profile</a>                  
+		                        <% } %>  
                         	</div>
                         	<span class="ml-3"></span>
                         	

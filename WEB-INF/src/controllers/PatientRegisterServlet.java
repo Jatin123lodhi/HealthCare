@@ -19,8 +19,9 @@ public class PatientRegisterServlet extends HttpServlet{
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
+		System.out.println(name+""+email+""+password);
 		Patient patient= new Patient(name,email,password);
 		patient.signUp();
+		
 	}
 }

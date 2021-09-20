@@ -25,11 +25,11 @@
     <div class="main_body">
         <h3 class="text-info text-center pt-3">Patient Login -</h3>
 
-        <div class="container border-top border-info " style="min-height: 500px;">
+        <div class="container  " style="min-height: 500px;">
             <div class="row pt-4 ">
-                <div class="col-6 pt-5 text-center"  >
+                <div class="col-6 pt-2 text-center"  >
                      
-                    <img src="static/images/login1.png" alt="" style="width: 35%;" class=" pt-3 ">
+                    <img src="static/images/login3.jpg" alt="" style="width: 90%;"  >
                 </div>
                 <div class="col-6 pt-2 pl-5 border-left border-info ">
                      <% String  errorMsg = (String)request.getAttribute("error"); %>

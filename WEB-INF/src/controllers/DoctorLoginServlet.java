@@ -61,7 +61,9 @@ public class DoctorLoginServlet extends HttpServlet {
 						 
 						
 					}else if(statusId==Status.INACTIVE) {
-						// account inactive show karege 
+						// account inactive show karege
+						error += "<li>Enter a valid password </li>";
+						nextPage = "doctor_login.do";
 						
 					}else if(statusId==Status.BLOCKED) {
 						// same page par accound blocked show karenge

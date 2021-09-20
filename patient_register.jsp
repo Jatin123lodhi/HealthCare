@@ -28,7 +28,7 @@
                     <img src="static/images/patient.png" alt="" style="width: 55%;" class=" pt-3 ">
                 </div>
                 <div class="col-6 pt-5 pl-5 border-left border-info" >
-                   	<form class="p-4">	 
+                   	<form action="patient_register.do" method="post" class="p-4">	 
                    		 <div class="form-group">
                              <label for="id_name"> Name:</label>
                              <input type="text"value="${param.name}" name="name" class="form-control form_inp" autocomplete="off" placeholder="Enter patient's name" id="id_name">

@@ -15,7 +15,7 @@
             <div class="row">
                <div class="col py-2">
                    <a href="index.jsp">Home </a> <span class="text-white">></span>
-                   <a href="">Registration Options </a> <span class="text-white">></span>
+                   <a href="">Login Options </a> <span class="text-white">></span>
                </div>
             </div>
         </div>

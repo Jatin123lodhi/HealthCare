@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import models.City;
 import models.Doctor;
 import models.ServiceTime;
+import models.Specialization;
 
 @WebServlet("/doctor_profile.do")
 public class DoctorProfileServlet extends HttpServlet {
@@ -39,17 +40,17 @@ public class DoctorProfileServlet extends HttpServlet {
 			String contact = request.getParameter("contact");
 			String gender = request.getParameter("gender");
 			int cityId = Integer.parseInt(request.getParameter("city"));
-			String specialization = request.getParameter("specialization");
+			int specializationId = Integer.parseInt(request.getParameter("specialization"));
 			String experience = request.getParameter("experience");
 			String address = request.getParameter("address");
 			//System.out.println(name+" "+serviceTimeId+" "+contact+" "+gender+" "+request.getParameter("city")+" "+specialization+" "+experience+" "+address);
-			if(doctor.updateProfile(name,serviceTimeId,contact,gender,cityId,specialization,experience,address)) {
+			if(doctor.updateProfile(name,serviceTimeId,contact,gender,cityId,new Specialization(specializationId),experience,address)) {
 				nextPage = "doctor_profile.do";
 				doctor.setName(name);
 				doctor.setServiceTime(new ServiceTime(serviceTimeId));
 				doctor.setGender(gender);
 				doctor.setCity(new City(cityId));
-				doctor.setSpecialization(specialization);
+				doctor.setSpecialization(new Specialization(specializationId));
 				doctor.setExperience(experience);
 				doctor.setAddress(address);
 			}
