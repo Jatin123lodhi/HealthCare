@@ -7,6 +7,22 @@
 		html {
   			scroll-behavior: smooth;
 		}
+		
+		 
+    	/* .form-box{
+    		position:absolute;
+    		top:0;
+    		left:0;
+    		max-width:100%;
+    		height:100%;
+    		z-index:1;
+    		background-color: rgba(0,0,0,0.5);
+    		display:flex;
+    		align-items: center;
+    		justify-content:center;
+    	} */
+    	 
+    
 	</style>
     
     
@@ -34,50 +50,7 @@
                  <input type="search" class="form-control w-50 " id="srh_field" style="height: 45px;" placeholder="Search doctors, hospitals, medicines">
                 <input type="submit" value="Search" id="srch_btn" class="btn btn-info ml-1" style="height: 45px;">
             </form>
-            
-            <%-- <div class="container mt-1 w-75 text-info " style="display:none;" id="doctor_srch_func">
-		     	<div class="rows p-2">
-		     		<div class="cols  ">
-		     			 <form class="form-inline p-3" >
-		     				<div class="form-group">
-		     					  
-		     					<% ArrayList<Hospital> hospitals = Hospital.getHospitalNames();  %> 
-		     				 
-		     					<select class="form-control btn btn-info border border-info  "   id="id_hospital" name="hospital">
-		     						<option value='0'>Select Hospital</option>
-		     						<% for(int i=0;i<hospitals.size();i++){ %>
-		     							<option value='<%=hospitals.get(i).getHospitalId() %>' ><%= hospitals.get(i).getName() %></option>
-		     							
-		     						<%} %>
-		     						 
-		     					</select>
-		     					<% ArrayList<String> specialities = Doctor.getDoctorSpeciality();  %>
-		     					 
-		     					<select class="form-control ml-4 border border-info btn btn-info" id="id_speciality"   name="speciality">
-		     						<option value='0'>Select speciality</option>
-		     						<% for(int i=0;i<specialities.size();i++){ %>
-		     							<option value='<%=specialities.get(i)  %>' ><%= specialities.get(i) %></option>
-		     							
-		     						<%} %>
-		     						 
-		     						 
-		     					</select>
-		     					
-		     					<select class="form-control ml-4 border border-info btn btn-info " id="id_timing"    name="timing">
-		     						<option value='0'>Select Timing</option>
-		     						<option value='1'>10AM-12PM</option>
-		     						<option value='2'>12PM-02PM</option>
-		     						<option value='3'>2PM-04PM</option>
-		     						<option value='4'>4PM-6PM</option>
-		     					</select>  
-		     					 
-		     				</div>
-		     			</form>
-		     		</div>
-		     		
-		     	</div>
-     		</div> --%>
-     	  
+              
         </div>
         <div class="container rounded  bg-white mt-5 p-3">
         	<div class="row p-2">
@@ -139,8 +112,33 @@
     </div>
     
     <div class="container   p-3 rec_container"  >
-    	  <h5 class="text-secondary d-none result">Search Results -</h5>
+    	  <h5 class="text-secondary d-none result">Search Results for <span id="spec_span"></span>-</h5>
     </div>
+    
+    <!-- <div class="container px-5 pb-5 form-box">
+     	<div class="row px-5 pb-5 mx-3">
+     		<div class="col p-5 mx-3 ">
+     			
+     			
+     			<div class="form border border-info rounded px-5 pt-2 pb-5  mb-5   bg-white" style="min-height:700px;min-width:970px" id="slots_div">
+     				
+     				<i class="fa fa-times fa-lg float-right mt-2 ml-n2" style="cursor:pointer"></i>
+     				<div class="container  border-bottom border-info text-info mb-4 ">
+				     	<div class="rows px-3 pb-2 pt-1 ">
+				     		<div class="cols ">
+				     			<h3 id="heading" class="mt-2">Book Slots -</h3>
+				     		</div>
+				     	</div>
+				    </div>
+     				
+   
+     			</div>
+     			
+     			
+     		</div>
+     		 	 
+     	</div>
+     </div> -->
     <%@ include file="footer.jsp"%>
     <script type="text/javascript" src="static/js/index.js"></script>
 </body>

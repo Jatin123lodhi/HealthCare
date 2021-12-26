@@ -24,8 +24,8 @@
         <div class="container  ">
             <div class="row">
                <div class="col py-2  ">
-               	   <a href="index.jsp">Home </a> <span class="text-white">></span>
-                   <a href="register_opt.jsp">Patient Profiles  </a> <span class="text-white">></span>
+               	   <a href="index.jsp">Home </a> <span class="text-white"></span>
+                   <a href="register_opt.jsp">Patient Profiles  </a> <span class="text-white"></span>
                    
                </div>
             </div>
@@ -55,7 +55,7 @@
      			</table> 			
      		</div> 
      	</div>
-     </div>
+    </div>
       
       
      <div class="container px-5 pb-5 form-box">

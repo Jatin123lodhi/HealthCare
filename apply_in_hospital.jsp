@@ -23,16 +23,8 @@
             </div>
         </div>
      </div>
-     <%-- <%@ include file="hospital_header_btns.jsp" %> --%>
-     <div class="container  ">
-	    <div class="row">
-	        <div class="col-2"></div>
-	        <div class="col-10 text-right">
-	           <a href="doctor_profile.do" class="btn btn-success">Profile</a>
-	           <a href="apply_in_hospital.do" class="btn btn-success">Apply in Hospital</a>  
-	        </div>
-	    </div>
-	 </div>
+     
+     <%@ include file='doctor_header_btns.jsp'%>
      
      
      <div class="container  border-bottom border-info text-info">

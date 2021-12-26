@@ -431,3 +431,45 @@ create table pescriptions(
     constraint fk_pescriptions_admissions foreign key (admission_id) references admissions(admission_id),
     constraint fk_pescriptions_tests foreign key (test_id) references tests(test_id)
 );
+
+## #########################################################################################
+## #########################################################################################
+
+create table doctor_time_slots(
+	doctor_time_slot_id int auto_increment primary key,
+	time_slot time not null,
+	doctor_id int not null,
+	constraint fk_doctor_time_slots_doctors foreign key (doctor_id) references doctors(doctor_id)
+);
+
+## #########################################################################################
+## #########################################################################################
+
+create table slot_status(
+	slot_status_id int auto_increment primary key,
+	slot_status int default 1,
+	slot_date date not null,
+	doctor_time_slot_id int not null,
+	constraint fk_slot_status_doctor_time_slots foreign key (doctor_time_slot_id) references doctor_time_slots (doctor_time_slot_id)
+	
+);
+## 1- vacant 2- booked
+##select time_slot from doctor_time_slots where doctor_id=6 and time_slot not in(
+##select time_slot from slot_status as s inner join doctor_time_slots as dts
+##where (s.doctor_time_slot_id=dts.doctor_time_slot_id and dts.doctor_id=6 )
+##AND(s.slot_status=2)
+##);
+
+## #########################################################################################
+## #########################################################################################
+
+create table appointments(
+	appointment_id int auto_increment primary key,
+	patient_name varchar(30) not null,
+	patient_mobile_no int not null,
+	slot_status_id int not null,
+	appointment_status int default 1
+);
+alter table appointments change column patient_mobile_no patient_mobile_no varchar(10) not null;
+## appointment_status 1 - not visited , 2- visited
+

@@ -14,7 +14,7 @@ public class ShowDoctorLogoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
 		String logo = request.getParameter("logo");
 	 
-		System.out.println(logo+"  -logo** "); 
+		//System.out.println(logo+"  -logo** "); 
 		OutputStream os = response.getOutputStream();
 		InputStream is = getServletContext().getResourceAsStream("/WEB-INF/uploads/hospital/"+logo);
 		if(is==null) {

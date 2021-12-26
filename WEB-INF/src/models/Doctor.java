@@ -75,11 +75,12 @@ public class Doctor {
 		this.serviceTime = serviceTime;
 	}
 	
-	public Doctor(String name,String experience,ServiceTime serviceTime,String logo){
+	public Doctor(String name,String experience,ServiceTime serviceTime,String logo,int doctorId){
 		this.name = name;
 		this.experience = experience;
 		this.serviceTime = serviceTime;
 		this.logo = logo;
+		this.doctorId = doctorId;
 	}
 	//############### methods #######################################
 	public void saveLogo(String fileName) {
@@ -202,7 +203,7 @@ public class Doctor {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare?user=root&password=1234");
 			
-			String query = "select name,experience,d.service_time_id,service_time,logo from doctors as d inner join service_times as st where d.service_time_id=st.service_time_id and city_id=? and specialization_id=?";
+			String query = "select name,experience,d.service_time_id,service_time,logo,doctor_id from doctors as d inner join service_times as st where d.service_time_id=st.service_time_id and city_id=? and specialization_id=?";
 			PreparedStatement pst = con.prepareStatement(query);
 			
 			pst.setInt(1,cityId);
@@ -210,7 +211,7 @@ public class Doctor {
 		 
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				doctors.add(new Doctor(rs.getString(1),rs.getString(2),new ServiceTime(rs.getInt(3),rs.getString(4)),rs.getString(5)));
+				doctors.add(new Doctor(rs.getString(1),rs.getString(2),new ServiceTime(rs.getInt(3),rs.getString(4)),rs.getString(5),rs.getInt(6)));
 			}
 			
 		}catch(SQLException | ClassNotFoundException e) {
